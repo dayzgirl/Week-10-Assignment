@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Table with Form</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>New Hire Class Roster</h1>
+    
+    <!-- Table -->
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Employee ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+        <!-- Table rows will be dynamically added here -->
+                <tr>
+                    <td>45</td>
+                    <td>John Doe</td>
+                    <td>john@example.com</td>
+                </tr>
+                <tr>
+                    <td>64</td>
+                    <td>Jane Smith</td>
+                    <td>jane@example.com</td>
+                </tr>
+            </tbody>
+        </table>
+
+    <!-- Form to add new row -->
+        <form id="addRowForm">
+            <div class="form-group">
+                <label for="nameInput">Full Name:</label>
+                <input type="text" class="form-control" id="nameInput" required>
+            </div>
+            <div class="form-group">
+                <label for="emailInput">Email:</label>
+                <input type="email" class="form-control" id="emailInput" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Row</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and jQuery (required for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+    // Function to add a new row to the table
+        function addRow() {
+            var name = document.getElementById('nameInput').value;
+            var email = document.getElementById('emailInput').value;
+
+      // Create a new row
+            var newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td>${Math.floor(Math.random() * 100)}</td>
+                <td>${name}</td>
+                <td>${email}</td>
+            `;
+
+      // Append the new row to the table body
+            document.getElementById('tableBody').appendChild(newRow);
+
+      // Reset form fields
+            document.getElementById('addRowForm').reset();
+        }
+
+    // Event listener for form submission
+        document.getElementById('addRowForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        addRow(); // Call function to add a new row
+        });
+    </script>
+</body>
+</html>
